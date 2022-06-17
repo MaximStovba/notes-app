@@ -2,8 +2,6 @@ import chalk from 'chalk';
 import yargs from 'yargs';
 import notes from './notes.js';
 
-console.log(chalk.green.inverse.bold('Success!'));
-
 // Customize yargs version
 yargs.version('1.1.0');
 
@@ -23,7 +21,7 @@ yargs.command({
       type: 'string',
     },
   },
-  handler: function (argv) {
+  handler(argv) {
     notes.addNote(argv.title, argv.body);
   },
 });
@@ -34,21 +32,21 @@ yargs.command({
   describe: 'Remove a note',
   builder: {
     title: {
-        describe: 'Note title',
-        demandOption: true,
-        type: 'string'
-    }
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string',
+    },
   },
-  handler: function (argv) {
-      notes.removeNote(argv.title)
-  }
+  handler(argv) {
+    notes.removeNote(argv.title);
+  },
 });
 
 // Create list command
 yargs.command({
   command: 'list',
   describe: 'List your notes',
-  handler: function () {
+  handler() {
     console.log('Listing out all notes');
   },
 });
@@ -57,9 +55,11 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'Read a note',
-  handler: function () {
+  handler() {
     console.log('Reading a note');
   },
 });
 
 yargs.parse();
+
+console.log(chalk.green.inverse.bold('Success!'));

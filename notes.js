@@ -15,27 +15,25 @@ const addNote = (title, body) => {
       body: body,
     });
     saveNotes(notes);
-    console.log(chalk.green.inverse('New note added!'))
+    console.log(chalk.green.inverse('New note added!'));
   } else {
-    console.log('Note title taken!');
+    console.log(chalk.red.inverse('Note title taken!'));
   }
 };
 
-const removeNote = function (title) {
-  const notes = loadNotes()
-  const notesToKeep = notes.filter(function (note) {
-      return note.title !== title
-  })
+const removeNote = (title) => {
+  const notes = loadNotes();
+  const notesToKeep = notes.filter((note) => note.title !== title);
 
   if (notes.length > notesToKeep.length) {
-      console.log(chalk.green.inverse('Note removed!'))
-      saveNotes(notesToKeep)
+    console.log(chalk.green.inverse('Note removed!'));
+    saveNotes(notesToKeep);
   } else {
-      console.log(chalk.red.inverse('No note found!'))
-  }    
-}
+    console.log(chalk.red.inverse('No note found!'));
+  }
+};
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync('notes.json', dataJSON);
 };
@@ -50,8 +48,8 @@ const loadNotes = function () {
   }
 };
 
-export default { 
+export default {
   getNotes,
-  removeNote, 
-  addNote, 
+  removeNote,
+  addNote,
 };
