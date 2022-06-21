@@ -5,6 +5,10 @@ const addNote = (title, body) => {
   const notes = loadNotes();
   const duplicateNote = notes.find((note) => note.title === title);
 
+  // 1. debugger
+  // 2. node inspect app.js add --title="new" --body="12345"
+  // 3. chrome://inspect/
+
   if (!duplicateNote) {
     notes.push({
       title: title,
